@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './WalletBalance.module.css';
 import backFaq from '../../../assets/images/backIcon.svg';
 import { Landmark, Plus, Wallet, X, ArrowDownLeft, ArrowUpRight } from "lucide-react";
@@ -41,7 +41,7 @@ const WalletBalance = ({
         }
     }, [isOpen]);
 
-    const fetchWalletData = useCallback(async () => {
+    const fetchWalletData = async () => {
         setIsFetchingWalletData(true)
         setApiMessage('');
         try {
@@ -66,7 +66,7 @@ const WalletBalance = ({
         } finally {
             setIsFetchingWalletData(false)
         }
-    }, [])
+    }
 
     const fetchHistory = async () => {
         setIsFetchingHistory(true)
@@ -177,16 +177,6 @@ const WalletBalance = ({
     };
 
 
-    const handleAmountChange = (e) => {
-        const value = e.target.value;
-        if (value === '' || (parseFloat(value) <= walletData.balance)) {
-            setAmount(value);
-        }
-    };
-
-    const setMaxBalance = () => {
-        setAmount(walletData.balance.toString());
-    };
 
     const resetForm = () => {
         setApiMessage('')
