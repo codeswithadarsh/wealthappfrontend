@@ -12,6 +12,8 @@ import LoadingDots from '../../components/LoadingDots/LoadingDots';
 import { fetchUserProfile } from '../../services/apis/profile.service';
 import toast from 'react-hot-toast';
 import { formatINR } from '../../utils/currency';
+import { APP_VERSION } from '../../config/appVersion';
+
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -179,6 +181,11 @@ const Profile = () => {
                     )}
                 </main>
             </div>
+
+            <div className={styles.appVersion}>
+                App Version {APP_VERSION}
+            </div>
+
 
             <WalletBalance
                 isOpen={showWalletBalanceModal}

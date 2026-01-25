@@ -7,6 +7,8 @@ import { setAuthFromLogin } from '../../store/auth/auth.slice';
 import { useDispatch } from 'react-redux';
 import { fetchUserProfile } from '../../store/auth/auth.thunks';
 import wealthLogo from "../../assets/images/logos/logo.png"
+import { APP_VERSION } from '../../config/appVersion';
+
 
 const UserLogin = () => {
   const dispatch = useDispatch();
@@ -179,9 +181,12 @@ const UserLogin = () => {
                 className={styles.mobileLogo}
               />
             </div>
-             <p className={styles.trustText}>
-                Trusted for Digital Gold and Wealth Investment
-              </p>
+            <p className={styles.trustText}>
+              Trusted for Digital Gold and Wealth Investment
+              <span style={{ fontSize: '10px', marginLeft: '6px', color: '#94a3b8', fontWeight: 400 }}>
+                v{APP_VERSION}
+              </span>
+            </p>
             <div className={styles.userLoginFormHeader}>
               <h2 className={styles.userLoginFormTitle}>
                 {step === 'email' && 'Login'}
