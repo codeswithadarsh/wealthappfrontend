@@ -1,0 +1,234 @@
+/* --- EXISTING MODAL STRUCTURE (Do Not Modify) --- */
+.SellGoldmodalOverlay {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    display: flex;
+    justify-content: flex-end;
+    transition: right 0.3s ease-out;
+}
+
+.SellGoldmodalOverlay.open {
+    right: 0;
+}
+
+.SellGoldmodalmodalContainer {
+    width: 100%;
+    max-width: 420px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.SellGoldmodalmodalHeader {
+    padding: 20px;
+    border-bottom: 1px solid #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+    .SellGoldmodalmodalHeader {
+        margin-top: 64px;
+    }
+}
+
+.SellGoldmodalcomponent1Parent {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.SellGoldmodalfaqsheading {
+    color: #092042;
+    font-family: Lato, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+
+
+.SellGoldHeaderTitleWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.SellGoldSubHeaderText {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+}
+
+
+.SellGoldMainContentScroll {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 20px;
+}
+
+
+.SellGoldInnerBody {
+    flex: 1;
+}
+
+.SellGoldInputSection {
+    margin-bottom: 16px;
+}
+
+.SellGoldInputContainer {
+    background-color: #f8f9fb;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.SellGoldRupeeSign {
+    font-size: 22px;
+    font-weight: 700;
+    color: #092042;
+    margin-right: 8px;
+}
+
+.SellGoldMainInput {
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    font-weight: 700;
+    color: #092042;
+    width: 100%;
+    outline: none;
+}
+
+.SellGoldChipList {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 30px;
+}
+
+.SellGoldQuickChip {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #092042;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.SellGoldQuickChip:hover {
+    background: #fdfdfd;
+    border-color: #ccc;
+}
+
+.SellGoldBankSelection {
+    padding: 2px;
+
+}
+
+
+
+.SellGoldActionFooter {
+    margin-top: 40px;
+    padding-bottom: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.SellGoldLivePriceText {
+    font-size: 13px;
+    color: #444;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.SellGoldSubmitButton {
+    width: 100%;
+    background-color: #1565c0;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(248, 92, 103, 0.25);
+}
+
+.SellGoldTermsText {
+    font-size: 11px;
+    color: #888;
+    margin-top: 16px;
+    line-height: 1.5;
+}
+
+.SellGoldTermsLink {
+    color: #1565c0;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+@media (max-width: 600px) {
+    .SellGoldmodalmodalContainer {
+        max-width: 100%;
+        margin-top: 0;
+    }
+}
+
+/* -------For Validation start----------- */
+.validationBox {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 12px;
+    padding: 12px 14px;
+    background-color: #eaf4ff;
+    border: 1px solid #cfe4ff;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.validationIcon {
+    color: #0b5ed7;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.validationText {
+    font-size: 13px;
+    color: #0b5ed7;
+    line-height: 1.5;
+    margin: 0;
+    word-break: break-word;
+}
+
+@media (max-width: 480px) {
+    .validationBox {
+        padding: 10px 12px;
+    }
+
+    .validationText {
+        font-size: 12px;
+    }
+}
+
+/* -------For Validation End----------- */

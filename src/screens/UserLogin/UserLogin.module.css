@@ -1,0 +1,347 @@
+.userLoginContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  /* background: linear-gradient(135deg, #4a3f7a 0%, #5e4d8f 50%, #4a3f7a 100%); */
+  background: #3C2770;
+  padding: 20px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.userLoginWrapper {
+  width: 100%;
+  max-width: 1000px;
+  height: 100%;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.userLoginCard {
+  display: flex;
+  width: 100%;
+  height: 80%;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+.userLoginLeftSection {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #2c2546;
+}
+
+.userLoginLeftImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.userLoginRightSection {
+  flex: 1;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #fffdec;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.userLoginFormHeader {
+  margin-bottom: 24px;
+}
+
+.userLoginFormTitle {
+  font-size: clamp(16px, 3vw, 20px);
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.userLoginFormDescription {
+  font-size: clamp(11px, 2vw, 13px);
+  color: #6b6b6b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.userLoginForm {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3vh, 22px);
+}
+
+.userLoginFormGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.userLoginLabel {
+  font-size: clamp(11px, 2vw, 13px);
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.userLoginInput {
+  width: 100%;
+  padding: clamp(10px, 2vh, 12px) clamp(12px, 2vw, 16px);
+  font-size: clamp(11px, 2vw, 13px);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.userLoginInput::placeholder {
+  color: #999999;
+  font-size: clamp(11px, 2vw, 13px);
+}
+
+.userLoginInput:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.userLoginInput:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  color: #999999;
+  border-color: #e8e8e8;
+}
+
+.userLoginInputError {
+  border-color: #e74c3c;
+}
+
+.userLoginInputError:focus {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.userLoginErrorText {
+  font-size: clamp(10px, 1.8vw, 12px);
+  color: #e74c3c;
+  margin-top: -4px;
+  display: block;
+}
+
+.userLoginForgotPassword {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.userLoginForgotText {
+  font-size: clamp(10px, 1.8vw, 12px);
+  color: #6b6b6b;
+}
+
+.userLoginResetLink {
+  font-size: clamp(10px, 1.8vw, 12px);
+  color: #7c3aed;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.userLoginResetLink:hover {
+  text-decoration: underline;
+}
+
+.userLoginButton {
+  width: 100%;
+  padding: clamp(11px, 2vh, 13px) clamp(18px, 3vw, 24px);
+  font-size: clamp(12px, 2vw, 14px);
+  font-weight: 600;
+  color: white;
+  background: #402a7b;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.userLoginButton:hover:not(:disabled) {
+  background: #6d28d9;
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+  transform: translateY(-1px);
+}
+
+.userLoginButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.userLoginButton:disabled {
+  background: #a0a0a0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.userLoginBackButton {
+  width: 100%;
+  padding: clamp(11px, 2vh, 13px) clamp(18px, 3vw, 24px);
+  font-size: clamp(12px, 2vw, 14px);
+  font-weight: 600;
+  color: #402a7b;
+  background: white;
+  border: 2px solid #402a7b;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.userLoginBackButton:hover {
+  background-color: #f5f3ff;
+  transform: translateY(-1px);
+}
+
+.userLoginBackButton:active {
+  transform: translateY(0);
+}
+
+.userLoginButtonRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 968px) {
+  .userLoginContainer {
+    padding: 16px;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .userLoginWrapper {
+    max-height: 95vh;
+  }
+
+  .userLoginCard {
+    flex-direction: column;
+    border-radius: 12px;
+  }
+
+  .userLoginLeftSection {
+    display: none;
+  }
+
+  .userLoginRightSection {
+    padding: 6%;
+    overflow-y: auto;
+  }
+
+  .userLoginFormHeader {
+    margin-bottom: 20px;
+  }
+
+  .userLoginForm {
+    gap: 16px;
+  }
+
+  .userLoginButtonRow {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .userLoginContainer {
+    padding: 12px;
+  }
+
+  .userLoginWrapper {
+    max-height: 96vh;
+  }
+
+  .userLoginCard {
+    border-radius: 10px;
+  }
+
+  .userLoginRightSection {
+    padding: 8%;
+  }
+
+  .userLoginFormHeader {
+    margin-bottom: 16px;
+  }
+
+  .userLoginForm {
+    gap: 14px;
+  }
+
+  .userLoginButtonRow {
+    gap: 8px;
+  }
+}
+
+@media (max-height: 600px) {
+  .userLoginContainer {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .userLoginWrapper {
+    max-height: none;
+  }
+
+  .userLoginRightSection {
+    padding: 4%;
+  }
+
+  .userLoginFormHeader {
+    margin-bottom: 16px;
+  }
+
+  .userLoginForm {
+    gap: 12px;
+  }
+}
+
+
+.mobileHeaderLogo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+  /* margin-top: -60px; */
+}
+
+.mobileLogo{
+  width: 150px;
+}
+
+.trustText {
+  text-align: center;
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+
+@media (min-width: 769px){
+  .mobileLogo{
+    width: 180px;
+  }
+}

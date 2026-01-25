@@ -1,0 +1,182 @@
+.GoldOrderMobileContainer {
+  min-height: 100vh;
+  background: #f8fafc;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.GoldOrderMobileHeader {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.GoldOrderMobileHeader h2 {
+  font-size: 16px;
+  font-weight: 800;
+  margin: 0;
+  color: #0f172a;
+}
+
+.GoldOrderMobileContent {
+  padding: 12px;
+  margin-bottom: 60px;
+}
+
+.GoldOrderMobileLoading {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.GoldOrderMobileEmpty {
+  text-align: center;
+  color: #64748b;
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+.GoldOrderMobileCard {
+  background: white;
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+  border: 1px solid #eef2f7;
+}
+
+.GoldOrderMobileIconBox {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.GoldOrderMobileBuy {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.GoldOrderMobileSell {
+  background: #fff1f2;
+  color: #be123c;
+}
+
+.GoldOrderMobileDetails {
+  flex: 1;
+}
+
+.GoldOrderMobileRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.GoldOrderMobileType {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.GoldOrderMobileAmount {
+  font-size: 14px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.GoldOrderMobileSubRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #64748b;
+}
+
+
+/* ------------Skelton Loadinf---- */
+
+.GoldOrderMobileSkeletonCard {
+  background: white;
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #eef2f7;
+}
+
+.GoldOrderMobileSkeletonIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #e5e7eb;
+  animation: GoldOrderMobileShimmer 1.4s infinite linear;
+}
+
+.GoldOrderMobileSkeletonDetails {
+  flex: 1;
+}
+
+.GoldOrderMobileSkeletonRow,
+.GoldOrderMobileSkeletonSubRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.GoldOrderMobileSkeletonRow {
+  margin-bottom: 8px;
+}
+
+.GoldOrderMobileSkeletonLineSm {
+  width: 90px;
+  height: 12px;
+  border-radius: 6px;
+  background: #e5e7eb;
+  animation: GoldOrderMobileShimmer 1.4s infinite linear;
+}
+
+.GoldOrderMobileSkeletonLineMd {
+  width: 70px;
+  height: 14px;
+  border-radius: 6px;
+  background: #e5e7eb;
+  animation: GoldOrderMobileShimmer 1.4s infinite linear;
+}
+
+.GoldOrderMobileSkeletonLineXs {
+  width: 60px;
+  height: 10px;
+  border-radius: 6px;
+  background: #e5e7eb;
+  animation: GoldOrderMobileShimmer 1.4s infinite linear;
+}
+
+@keyframes GoldOrderMobileShimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+
+.GoldOrderMobileSkeletonIcon,
+.GoldOrderMobileSkeletonLineSm,
+.GoldOrderMobileSkeletonLineMd,
+.GoldOrderMobileSkeletonLineXs {
+  background-image: linear-gradient(
+    90deg,
+    #e5e7eb 25%,
+    #f1f5f9 37%,
+    #e5e7eb 63%
+  );
+  background-size: 400px 100%;
+}

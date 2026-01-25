@@ -1,0 +1,618 @@
+.DigitalGoldDashboardContainer {
+  font-family: 'Inter', system-ui, sans-serif;
+  /* background-color: #f9fbff; */
+  background-color: #fff;
+  min-height: 100vh;
+  padding: 16px;
+  max-width: 1300px;
+  margin: 0 auto;
+  color: #092042;
+}
+
+@media (max-width: 768px){
+  .DigitalGoldDashboardContainer{
+    margin-bottom: 70px;
+  }
+}
+
+.DigitalGoldDashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.DigitalGoldDashboardTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.DigitalGoldDashboardMainTitle {
+  font-size: 18px;
+  /* Requested */
+  font-weight: 700;
+  margin: 0;
+}
+
+.DigitalGoldDashboardLivePriceBadge {
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: 100px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  border: 1px solid #edf2f7;
+}
+
+.DigitalGoldDashboardPulseDot {
+  width: 6px;
+  height: 6px;
+  background-color: #7c4dff;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.3);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+}
+
+.DigitalGoldDashboardLiveText {
+  font-size: 10px;
+  color: #718096;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.DigitalGoldDashboardPriceValue {
+  font-size: 12px;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+/* --- Layout --- */
+.DigitalGoldDashboardMain {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 20px;
+}
+
+/* --- Savings Card --- */
+.DigitalGoldDashboardSavingsCard {
+  background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 20px;
+}
+
+.DigitalGoldDashboardSavingsTop {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.DigitalGoldDashboardLabel {
+  font-size: 12px;
+  color: #718096;
+  margin-bottom: 4px;
+}
+
+.DigitalGoldDashboardBalance {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0;
+  color: #1a365d;
+}
+
+.DigitalGoldDashboardWeight {
+  font-size: 12px;
+  color: #4a5568;
+  margin-top: 4px;
+}
+
+.DigitalGoldDashboardSavingsBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.DigitalGoldDashboardViewDetail {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #1565c0;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.DigitalGoldDashboardSavingsActions {
+  display: flex;
+  gap: 12px;
+}
+
+.DigitalGoldDashboardBtnWithdraw,
+.DigitalGoldDashboardBtnBuy {
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.DigitalGoldDashboardBtnWithdraw {
+  background: white;
+  border: 1px solid #1565c0;
+  color: #1565c0;
+}
+
+.DigitalGoldDashboardBtnBuy {
+  background: #1565c0;
+  color: white;
+  border: none;
+}
+
+/* --- Sidebar (Orders) --- */
+.DigitalGoldDashboardOrderSidebar {
+  background: white;
+  border-radius: 16px;
+  padding: 10px;
+  border: 1px solid #edf2f7;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 228px);
+}
+
+.DigitalGoldDashboardOrderList {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 6px;
+
+}
+
+
+.DigitalGoldDashboardOrderList::-webkit-scrollbar {
+  width: 5px;
+}
+
+.DigitalGoldDashboardOrderList::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #cbd5e1, #94a3b8);
+  border-radius: 10px;
+}
+
+.DigitalGoldDashboardOrderList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.DigitalGoldDashboardOrderList {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+
+
+
+.DigitalGoldDashboardOrderItem {
+  display: flex;
+  align-items: flex-start;
+  padding: 5px 0;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.DigitalGoldDashboardOrderIconBox {
+  padding: 8px;
+  background: #f8fafc;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.DigitalGoldDashboardOrderDetails {
+  flex: 1;
+  padding: 0 12px;
+}
+
+.DigitalGoldDashboardOrderType {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0;
+  color: #2d3748;
+}
+
+.DigitalGoldDashboardOrderMeta {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.DigitalGoldDashboardOrderValue {
+  text-align: right;
+}
+
+.DigitalGoldDashboardAmount {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.DigitalGoldDashboardWeightSub {
+  font-size: 10px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* --- Quick Actions --- */
+.DigitalGoldDashboardQuickActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.DigitalGoldDashboardActionBox {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid #f1f5f9;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.DigitalGoldDashboardActionBox:hover:not(.DigitalGoldDashboardActionDisabled) {
+  border-color: #2563eb;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.05);
+  transform: translateY(-2px);
+}
+
+.DigitalGoldDashboardIconWrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.DigitalGoldDashboardBlueIcon {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.DigitalGoldDashboardGreyIcon {
+  background: #f8fafc;
+  color: #94a3b8;
+}
+
+.DigitalGoldDashboardActionText h4 {
+  font-size: 14px;
+  margin: 0;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.DigitalGoldDashboardActionText p {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.DigitalGoldDashboardArrow {
+  margin-left: auto;
+  color: #cbd5e1;
+  transition: 0.2s;
+}
+
+.DigitalGoldDashboardActionBox:hover .DigitalGoldDashboardArrow {
+  color: #2563eb;
+  transform: translateX(3px);
+}
+
+.DigitalGoldDashboardComingSoonBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 9px;
+  font-weight: 800;
+  background: #f1f5f9;
+  color: #64748b;
+  padding: 2px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+.DigitalGoldDashboardActionDisabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* --- Blogs & Videos - NEW UI --- */
+.DigitalGoldDashboardVideoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.DigitalGoldDashboardSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.DigitalGoldDashboardSectionHeader h3 {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.DigitalGoldDashboardVideoCard {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #f1f5f9;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.DigitalGoldDashboardVideoCard:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+}
+
+.DigitalGoldDashboardVideoThumb {
+  height: 140px;
+  background: #1e293b;
+  position: relative;
+  overflow: hidden;
+}
+
+.DigitalGoldDashboardThumbImage {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, #1e3a8a, #3b82f6);
+  opacity: 0.8;
+  width: 100%;
+}
+
+.DigitalGoldDashboardPlayOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.DigitalGoldDashboardPlayBtn {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.2s;
+}
+
+.DigitalGoldDashboardVideoCard:hover .DigitalGoldDashboardPlayBtn {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.DigitalGoldDashboardDuration {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.DigitalGoldDashboardVideoContent {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.DigitalGoldDashboardCategory {
+  font-size: 10px;
+  font-weight: 800;
+  color: #2563eb;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+
+.DigitalGoldDashboardVideoTitle {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #0f172a;
+  margin: 0 0 16px 0;
+}
+
+.DigitalGoldDashboardVideoFooter {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #f8fafc;
+}
+
+.DigitalGoldDashboardAuthor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.DigitalGoldDashboardAvatar {
+  width: 22px;
+  height: 22px;
+  background: #2563eb;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+}
+
+
+@media (max-width: 1024px) {
+  .DigitalGoldDashboardMain {
+    grid-template-columns: 1fr;
+  }
+
+  .DigitalGoldDashboardOrderSidebar {
+    display: none;
+  }
+
+}
+
+@media (max-width: 640px) {
+  .DigitalGoldDashboardHeader {
+    gap: 4px;
+  }
+
+  .DigitalGoldDashboardLiveText {
+    display: none;
+  }
+
+  .DigitalGoldDashboardSavingsCard {
+    padding: 16px;
+  }
+
+  .DigitalGoldDashboardSavingsBottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .DigitalGoldDashboardSavingsActions {
+    width: 100%;
+  }
+
+  .DigitalGoldDashboardBtnWithdraw,
+  .DigitalGoldDashboardBtnBuy {
+    flex: 1;
+    text-align: center;
+  }
+
+  .DigitalGoldDashboardQuickActions,
+  .DigitalGoldDashboardVideoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.DigitalGoldDashboardEmptyState {
+  flex: 1; 
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  font-size: 14px;
+  color: #94a3b8;
+  font-weight: 500;
+  text-align: center;
+}
+
+.DigitalGoldDashboardErrorContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.DigitalGoldDashboardErrorText {
+  font-size: 13px;
+  color: #e53e3e;
+  margin: 0;
+  font-weight: 500;
+}
+
+.DigitalGoldDashboardRetryBtn {
+  background: none;
+  border: none;
+  color: #1565c0;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  width: fit-content;
+}
+
+.DigitalGoldDashboardRetryBtn:hover {
+  color: #0d47a1;
+}
+
+/* -----------------For Blogs and Videos--------- */
+
+.DigitalGoldDashboardVideoThumb {
+  height: 150px; 
+  background: #000;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.DigitalGoldDashboardInlinePlayer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.DigitalGoldDashboardPlayOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
+}
+
+.DigitalGoldDashboardPlayOverlay:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.DigitalGoldDashboardStopVideo {
+  margin-left: auto;
+  color: #e53e3e;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+}

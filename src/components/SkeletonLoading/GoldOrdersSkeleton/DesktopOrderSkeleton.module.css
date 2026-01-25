@@ -1,0 +1,80 @@
+.DesktopOrderSkeletonContainer {
+  width: 100%;
+}
+
+.DesktopOrderSkeletonItem {
+  display: flex;
+  align-items: flex-start;
+  padding: 8px 0;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.DesktopOrderSkeletonIconBox {
+  width: 32px;
+  height: 32px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.DesktopOrderSkeletonDetails {
+  flex: 1;
+  padding: 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.DesktopOrderSkeletonValue {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+/* Base Line Styles */
+.DesktopOrderSkeletonLineShort,
+.DesktopOrderSkeletonLineTiny {
+  background: #f1f5f9;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.DesktopOrderSkeletonLineShort {
+  width: 60px;
+  height: 14px;
+}
+
+.DesktopOrderSkeletonLineTiny {
+  width: 40px;
+  height: 10px;
+}
+
+/* Shimmer Animation */
+.DesktopOrderSkeletonIconBox::after,
+.DesktopOrderSkeletonLineShort::after,
+.DesktopOrderSkeletonLineTiny::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.5) 20%,
+    rgba(255, 255, 255, 0.6) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: DesktopOrderSkeletonShimmer 2s infinite;
+}
+
+@keyframes DesktopOrderSkeletonShimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

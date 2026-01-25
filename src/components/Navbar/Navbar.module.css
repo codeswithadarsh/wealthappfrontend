@@ -1,0 +1,103 @@
+@import "../../styles/colors.css";
+
+.NavbarContainer {
+  width: 100%;
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-border-light);
+  position: sticky;
+  top: 0;
+  z-index: 1000000;
+}
+
+.NavbarInner {
+  /* max-width: 1200px; */
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.NavbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.NavbarLogo {
+  height: 22px;
+  cursor: pointer;
+}
+
+.NavbarNav {
+  display: flex;
+  gap: 24px;
+}
+
+.NavbarNavItem {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.NavbarNavItemActive {
+  color: var(--color-fintech-green);
+  border-bottom: 2px solid var(--color-fintech-green);
+  font-weight: 600;
+}
+
+.NavbarRight {
+  margin-left: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.NavbarProfileIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--color-gray-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-primary);
+  font-size: 16px;
+}
+
+.NavbarProfileDropdown {
+  position: absolute;
+  right: 0;
+  top: 52px;
+  width: 170px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.NavbarProfileItem {
+  padding: 12px 14px;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.NavbarProfileItem:hover {
+  background-color: var(--color-fintech-green-light);
+}
+
+
+@media (max-width: 768px) {
+  .NavbarNav {
+    display: none;
+  }
+}
