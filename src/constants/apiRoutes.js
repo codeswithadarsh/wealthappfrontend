@@ -2,6 +2,8 @@ export const API_ROUTES = {
   USER_EXIST_CHECK: "/api/users/check-email",
   USER_LOGIN: "/api/auth/login",
   USER_Register: "/api/auth/register",
+  FORGET_PASSWORD: "/api/auth/forgot-password",
+  RESET_PASSWORD: "/api/auth/reset-password",
   USER_PROFILE: "/api/users/getprofile",
 
   WALLET_BALANCE_WITH_BANK: "/api/wallet/wallet-balance",

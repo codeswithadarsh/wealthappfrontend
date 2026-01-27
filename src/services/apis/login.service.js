@@ -12,3 +12,11 @@ export const userLogin = (payload) => {
 export const userRegister = (payload) => {
   return postRequest(API_ROUTES.USER_Register, payload)
 };
+
+export const forgotPassword = (payload) => {
+  return postRequest(API_ROUTES.FORGET_PASSWORD, payload)
+}
+
+export const resetPassword = (payload) => {
+  return postRequest(API_ROUTES.RESET_PASSWORD, payload)
+}

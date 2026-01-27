@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import toast from 'react-hot-toast';
 import styles from './UserLogin.module.css';
-import { fetchUserExists, userLogin, userRegister } from '../../services/apis/login.service';
+import { fetchUserExists, forgotPassword, resetPassword, userLogin, userRegister } from '../../services/apis/login.service';
 import loginDesk from "../../assets/images/login/d.jpg"
 import { setAuthFromLogin } from '../../store/auth/auth.slice';
 import { useDispatch } from 'react-redux';
@@ -23,6 +23,17 @@ const UserLogin = () => {
   const [mobileNo, setMobileNo] = useState('');
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+
+  // -----For Forget Password related Start -------------
+  const [otp, setOtp] = useState(['', '', '', ''])
+  const otpRefs = useRef([])
+
+  const [newPassword, setNewPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [backendMessage, setBackendMessage] = useState('')
+
+  // -----For Forget Password related End -------------
+
 
   // Validation functions
   const validateEmail = (email) => {
@@ -152,12 +163,67 @@ const UserLogin = () => {
     }
   };
 
+  const handleSendOtp = async () => {
+    setLoading(true)
+    setBackendMessage('')
+    try {
+      const res = await forgotPassword({ email })
+      if (res?.status === 1) {
+        setBackendMessage(res.message)
+        setStep('reset')
+      } else {
+        setBackendMessage(res.message)
+      }
+    } catch (err) {
+      setBackendMessage('Something went wrong')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleResetPassword = async () => {
+    if (newPassword !== confirmPassword) {
+      toast.error('Passwords do not match')
+      return
+    }
+
+    setLoading(true)
+    setBackendMessage('')
+    try {
+      const res = await resetPassword({
+        email,
+        otp: otp.join(''),
+        newPassword,
+        confirmPassword
+      })
+
+      if (res?.status === 1) {
+        toast.success(res.message)
+        setPassword('')
+        setOtp(['', '', '', ''])
+        setNewPassword('')
+        setConfirmPassword('')
+        setStep('login')
+      } else {
+        setBackendMessage(res.message)
+      }
+    } catch (err) {
+      setBackendMessage('Reset failed')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+
+
   const handleBackToEmail = () => {
     setStep('email');
     setPassword('');
     setName('');
     setMobileNo('');
     setErrors({});
+    setOtp['', '', '', ''];
+    setBackendMessage("")
   };
 
   return (
@@ -252,8 +318,19 @@ const UserLogin = () => {
                   />
                   {errors.password && <span className={styles.userLoginErrorText}>{errors.password}</span>}
                   <div className={styles.userLoginForgotPassword}>
-                    <span className={styles.userLoginForgotText}>Forgot password?</span>
-                    <a href="#" className={styles.userLoginResetLink}>Reset</a>
+                    <span
+                      className={styles.userLoginForgotText}
+                      onClick={() => {
+                        setBackendMessage('')
+                        setStep('forgot')
+                      }}
+                    >
+                      Forgot password?
+                    </span>
+                    <span onClick={() => {
+                      setBackendMessage('')
+                      setStep('forgot')
+                    }} className={styles.userLoginResetLink}>Reset</span>
                   </div>
                 </div>
                 <div className={styles.userLoginButtonRow}>
@@ -275,6 +352,147 @@ const UserLogin = () => {
                 </div>
               </div>
             )}
+
+
+            {/* Forget Step */}
+            {step === 'forgot' && (
+              <div className={styles.userLoginForm}>
+                {backendMessage && (
+                  <div className={styles.infoMessage}>
+                    {backendMessage}
+                  </div>
+                )}
+
+                <div className={styles.userLoginFormGroup}>
+                  <label className={styles.userLoginLabel}>Email*</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className={styles.userLoginInput}
+                    disabled={loading}
+                  />
+                </div>
+
+                <div className={styles.userLoginButtonRow}>
+                  <button
+                    type="button"
+                    onClick={handleBackToEmail}
+                    className={styles.userLoginBackButton}
+                  >
+                    Back
+                  </button>
+
+                  <button
+                    type="button"
+                    className={styles.userLoginButton}
+                    disabled={loading}
+                    onClick={handleSendOtp}
+                  >
+                    {loading ? 'Sending...' : 'Send OTP'}
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Reset Step */}
+            {step === 'reset' && (
+              <div className={styles.userLoginForm}>
+                {backendMessage && (
+                  <div className={styles.infoMessage}>
+                    {backendMessage}
+                  </div>
+                )}
+
+                <div className={styles.otpContainer}>
+                  {otp.map((digit, index) => (
+                    <input
+                      key={index}
+                      ref={(el) => (otpRefs.current[index] = el)}
+                      type="text"
+                      inputMode="numeric"
+                      maxLength={1}
+                      value={digit}
+                      className={styles.otpBox}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/[^0-9]/g, '')
+                        if (!value) return
+
+                        const updated = [...otp]
+                        updated[index] = value
+                        setOtp(updated)
+
+                        if (index < otp.length - 1) {
+                          otpRefs.current[index + 1]?.focus()
+                        }
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Backspace') {
+                          const updated = [...otp]
+                          if (updated[index]) {
+                            updated[index] = ''
+                            setOtp(updated)
+                          } else if (index > 0) {
+                            otpRefs.current[index - 1]?.focus()
+                          }
+                        }
+                      }}
+                    />
+                  ))}
+                </div>
+
+
+                <div className={styles.userLoginFormGroup}>
+                  <label className={styles.userLoginLabel}>New Password*</label>
+                  <input
+                    type="password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    className={styles.userLoginInput}
+                  />
+                </div>
+
+                <div className={styles.userLoginFormGroup}>
+                  <label className={styles.userLoginLabel}>Confirm Password*</label>
+                  <input
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className={styles.userLoginInput}
+                  />
+                </div>
+
+                <div className={styles.userLoginButtonRow}>
+                  <button
+                    type="button"
+                    onClick={handleBackToEmail}
+                    className={styles.userLoginBackButton}
+                  >
+                    Back
+                  </button>
+
+                  <button
+                    type="button"
+                    className={styles.userLoginButton}
+                    disabled={loading}
+                     onClick={handleResetPassword}
+                  >
+                    {loading ? 'Resetting...' : 'Reset Password'}
+                  </button>
+                </div>
+
+                {/* <button
+                  type="button"
+                  className={styles.userLoginButton}
+                  disabled={loading}
+                  onClick={handleResetPassword}
+                >
+                  {loading ? 'Resetting...' : 'Reset Password'}
+                </button> */}
+              </div>
+            )}
+
+
 
             {/* Register Step */}
             {step === 'register' && (
