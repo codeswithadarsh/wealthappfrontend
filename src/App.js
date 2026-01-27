@@ -1,13 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
-import Navbar from "./components/Navbar/Navbar";
 import UserLogin from "./screens/UserLogin/UserLogin";
 import DigitalGold from "./screens/DigitalGold/DigitalGoldRoutes";
 import Dashboard from "./screens/Dashboard/Dashboard";
 import { Toaster } from "react-hot-toast";
-import ListPage from "./screens/test/test"
-import BottomBar from "./components/BottomBar/BottomBar";
 import Profile from "./screens/UserProfile/Profile";
 import ProtectedLayout from "./routes/ProtectedLayout";
 
@@ -29,7 +26,6 @@ const App = () => {
 
         <Route element={<PublicRoute />}>
           <Route path="/login" element={<UserLogin />} />
-          <Route path="/test" element={<ListPage />} />
 
         </Route>
 
