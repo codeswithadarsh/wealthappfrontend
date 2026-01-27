@@ -222,7 +222,7 @@ const UserLogin = () => {
     setName('');
     setMobileNo('');
     setErrors({});
-    setOtp['', '', '', ''];
+    setOtp(['', '', '', '']);
     setBackendMessage("")
   };
 
