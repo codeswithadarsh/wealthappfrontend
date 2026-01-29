@@ -117,17 +117,17 @@ const SellGold = ({
         try {
             const res = await initiateSellGold({ amount: Number(amount) });
 
-            if (res.status === 1) {
+            if (res?.status === 1) {
                 setStatusModalSell({
                     open: true,
                     type: "success",
                     details: {
-                        amountCredited: res.amountCredited,
-                        goldSoldInGrams: res.goldSoldInGrams,
-                        sellPricePerGram: res.sellPricePerGram,
-                        transactionDate: res.transactionDate,
+                        amountCredited: res?.amountCredited,
+                        goldSoldInGrams: res?.goldSoldInGrams,
+                        sellPricePerGram: res?.sellPricePerGram,
+                        transactionDate: res?.transactionDate,
                         walletBalance: res.walletBalance,
-                        goldBalance: res.goldBalance
+                        goldBalance: res?.goldBalance
                     }
                 });
 

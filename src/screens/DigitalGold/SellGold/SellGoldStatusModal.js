@@ -126,7 +126,7 @@ const SellGoldStatusModal = ({ isOpen, status, details, onClose }) => {
                                     fontWeight: 700
                                 }}
                             >
-                                ₹{formatINR(details.amountCredited)}
+                                {formatINR(details.amountCredited)}
                             </span>
                         </div>
 

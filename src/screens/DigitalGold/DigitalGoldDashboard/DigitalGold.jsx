@@ -121,7 +121,7 @@ const DigitalGold = () => {
 
   useEffect(() => {
     if (isDesktopUtils) {
-      fetchDesktopGoldOrders ();
+      fetchDesktopGoldOrders();
     }
   }, [isDesktopUtils]);
 
@@ -415,7 +415,7 @@ const DigitalGold = () => {
           refreshAfterTransaction();
         }}
         title="Sell Gold"
-        setStatusModal={setStatusModal}
+        setStatusModalSell={setStatusModalSell}
       />
 
       <BuyGoldStatusModal
@@ -432,7 +432,7 @@ const DigitalGold = () => {
         status={statusModalSell.type}
         details={statusModalSell.details}
         onClose={() =>
-          setStatusModal({ ...statusModalSell, open: false })
+          setStatusModalSell({ ...statusModalSell, open: false })
         }
       />
 
