@@ -11,8 +11,10 @@ import WalletBalance from './WalletBalance/WalletBalance';
 import LoadingDots from '../../components/LoadingDots/LoadingDots';
 import { fetchUserProfile } from '../../services/apis/profile.service';
 import toast from 'react-hot-toast';
+import { Trash2, AlertTriangle, X } from 'lucide-react';
 import { formatINR } from '../../utils/currency';
 import { APP_VERSION } from '../../config/appVersion';
+import DeleteAccountModal from './DeleteAccountModal/DeleteAccountModal';
 
 
 const Profile = () => {
@@ -28,6 +30,7 @@ const Profile = () => {
 
 
     const [showWalletBalanceModal, setShowWalletBalanceModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const userData = {
         name: "Adarsh Pandey",
@@ -135,7 +138,19 @@ const Profile = () => {
                                         <span className={styles.profileValueBadge}>Verification Pending</span>
                                     </div>
                                 </div>
+
+                                <div className={styles.deleteSection} style={{ marginTop: '20px', borderTop: '1px solid #eee', paddingTop: '20px' }}>
+                                    <button
+                                        className={styles.deleteAccountTriggerBtn}
+                                        style={{ color: '#ef4444', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px', background: 'none', border: 'none', cursor: 'pointer', fontWeight: '600' }}
+                                        onClick={() => setShowDeleteModal(true)}
+                                    >
+                                        <Trash2 size={18} /> Delete Account
+                                    </button>
+                                </div>
                             </div>
+
+
                         </div>
                     ) : (
                         <div className={styles.profileCard}>
@@ -193,6 +208,12 @@ const Profile = () => {
                     setShowWalletBalanceModal(false);
                 }}
                 title="Sell Gold"
+            />
+
+            <DeleteAccountModal
+                isOpen={showDeleteModal}
+                onClose={() => setShowDeleteModal(false)}
+            // onDeleteConfirm={handleDeleteAccount}
             />
 
         </>

@@ -1,0 +1,104 @@
+.DeleteAccountOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000000;
+}
+
+.DeleteAccountModalContent {
+    background: #ffffff;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 20px;
+    padding: 24px;
+    outline: none;
+    position: relative;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.DeleteAccountHeader {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.DeleteAccountWarningIcon {
+    background: #fef2f2;
+    padding: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.DeleteAccountCloseBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.DeleteAccountBody {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.DeleteAccountTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+.DeleteAccountDescription {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.DeleteAccountFooter {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.DeleteAccountConfirmBtn {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 13px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.DeleteAccountConfirmBtn:hover {
+    background-color: #dc2626;
+}
+
+.DeleteAccountCancelBtn {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: none;
+    padding: 12px;
+    font-size: 13px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.DeleteAccountCancelBtn:hover {
+    background-color: #e2e8f0;
+}

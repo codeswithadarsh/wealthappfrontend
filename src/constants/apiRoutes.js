@@ -5,6 +5,7 @@ export const API_ROUTES = {
   FORGET_PASSWORD: "/api/auth/forgot-password",
   RESET_PASSWORD: "/api/auth/reset-password",
   USER_PROFILE: "/api/users/getprofile",
+  DELETE_USER_Account: "/api/users/delete-account",
 
   WALLET_BALANCE_WITH_BANK: "/api/wallet/wallet-balance",
   WALLET_HISTORY: '/api/wallet/wallet-history',

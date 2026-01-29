@@ -15,3 +15,12 @@ export const getRequest = async (url, params) => {
     return false
   }
 }
+
+
+export const deleteRequest = async (url, params) => {
+  try {
+    return await api.delete(url, { params })
+  } catch {
+    return false
+  }
+}

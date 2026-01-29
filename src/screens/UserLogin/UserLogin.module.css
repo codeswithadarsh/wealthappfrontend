@@ -161,6 +161,7 @@
   color: #7c3aed;
   font-weight: 600;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .userLoginResetLink:hover {
@@ -328,7 +329,7 @@
   /* margin-top: -60px; */
 }
 
-.mobileLogo{
+.mobileLogo {
   width: 150px;
 }
 
@@ -340,8 +341,8 @@
 }
 
 
-@media (min-width: 769px){
-  .mobileLogo{
+@media (min-width: 769px) {
+  .mobileLogo {
     width: 180px;
   }
 }
@@ -383,3 +384,46 @@
   }
 }
 
+/* -----------------For Demo Text Start---------- */
+
+.demoMiniBox {
+  margin-top: 6px;
+  margin-bottom: 12px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: #f8fafc;
+  border: 1px dashed #c7d2fe;
+  font-size: 12px;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.demoMiniBadge {
+  font-size: 10px;
+  font-weight: 600;
+  color: #4338ca;
+  background: #e0e7ff;
+  padding: 2px 6px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.demoMiniText {
+  color: #475569;
+}
+
+
+
+.demoMiniCred {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  padding: 2px 6px;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+/* -----------------For Demo Text Start---------- */

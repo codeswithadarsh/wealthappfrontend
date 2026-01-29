@@ -24,6 +24,10 @@ const UserLogin = () => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
+  const params = new URLSearchParams(window.location.search)
+  const loginType = params.get('loginType')
+  const isDemoUser = loginType === 'demoUser'
+
   // -----For Forget Password related Start -------------
   const [otp, setOtp] = useState(['', '', '', ''])
   const otpRefs = useRef([])
@@ -240,19 +244,44 @@ const UserLogin = () => {
           </div>
 
           <div className={styles.userLoginRightSection}>
-            <div className={styles.mobileHeaderLogo}>
-              <img
-                src={wealthLogo}
-                alt="Wealth Logo"
-                className={styles.mobileLogo}
-              />
-            </div>
-            <p className={styles.trustText}>
-              Trusted for Digital Gold and Wealth Investment
-              <span style={{ fontSize: '10px', marginLeft: '6px', color: '#94a3b8', fontWeight: 400 }}>
-                v{APP_VERSION}
-              </span>
-            </p>
+            {(step === 'email' || step === 'login') && (
+              <>
+                <div className={styles.mobileHeaderLogo}>
+                  <img
+                    src={wealthLogo}
+                    alt="Wealth Logo"
+                    className={styles.mobileLogo}
+                  />
+                </div>
+                <p className={styles.trustText}>
+                  Trusted for Digital Gold and Wealth Investment
+                  <span style={{ fontSize: '10px', marginLeft: '6px', color: '#94a3b8', fontWeight: 400 }}>
+                    v{APP_VERSION}
+                  </span>
+                </p>
+
+                {isDemoUser && (
+                  <div className={styles.demoMiniBox}>
+                    <span className={styles.demoMiniBadge}>DEMO</span>
+
+                    <span className={styles.demoMiniText}>
+                      Use email for demo or create an account using your Email.
+                    </span>
+
+                    <span className={styles.demoMiniCred}>
+                      <b>Email:</b> meadarshpandey@gmail.com
+                    </span>
+
+                    <span className={styles.demoMiniCred}>
+                      <b>Pass:</b> Demo@123
+                    </span>
+                  </div>
+                )}
+
+
+              </>
+            )}
+
             <div className={styles.userLoginFormHeader}>
               <h2 className={styles.userLoginFormTitle}>
                 {step === 'email' && 'Login'}
@@ -475,7 +504,7 @@ const UserLogin = () => {
                     type="button"
                     className={styles.userLoginButton}
                     disabled={loading}
-                     onClick={handleResetPassword}
+                    onClick={handleResetPassword}
                   >
                     {loading ? 'Resetting...' : 'Reset Password'}
                   </button>
