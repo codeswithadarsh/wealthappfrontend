@@ -17,6 +17,10 @@ export const goldLivePrice = (payload) => {
     return getRequest(API_ROUTES.FETCH_GOLD_LIVE_PRICE, payload)
 };
 
+export const getGoldPricehistory = (payload) => {
+    return getRequest(API_ROUTES.GOLD_PRICE_HISTORY, payload)
+};
+
 export const sellLivePrice = (payload) => {
     return getRequest(API_ROUTES.FETCH_SELL_LIVE_PRICE, payload)
 };

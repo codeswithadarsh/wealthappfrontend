@@ -12,6 +12,14 @@ const BottomBar = () => {
   const location = useLocation();
   const pathname = location.pathname;
 
+  const hiddenPaths = [
+  '/digitalGold/GoldHistory'
+];
+
+if (hiddenPaths.includes(pathname)) {
+  return null;
+}
+
   
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', path: '/dashboard', icon: <LayoutDashboard /> },

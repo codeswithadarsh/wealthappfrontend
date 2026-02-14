@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MoveLeft, Calendar, Coins, Play, CircleStar, ChevronRight, CheckCircle2, Clock, ArrowLeft, ArrowUpRight, ArrowDownLeft } from 'lucide-react';
+import { MoveLeft, Calendar, Coins, Play, CircleStar, ChevronRight, CheckCircle2, Clock, ArrowLeft, ArrowUpRight, ArrowDownLeft, Podcast } from 'lucide-react';
 import styles from './DigitalGold.module.css';
 import Navbar from '../../../components/Navbar/Navbar';
 import { useNavigate } from 'react-router-dom';
@@ -180,9 +180,10 @@ const DigitalGold = () => {
             <img src={backIcon} alt="back" className={styles.DigitalGoldDashboardBackIcon} />
             <h2 className={styles.DigitalGoldDashboardMainTitle}>Digital gold</h2>
           </div>
-          <div className={styles.DigitalGoldDashboardLivePriceBadge}>
+          <div className={styles.DigitalGoldDashboardLivePriceBadge} onClick={() => navigate("/digitalGold/GoldHistory")}>
             <div className={styles.DigitalGoldDashboardLiveIndicator}>
-              <span className={styles.DigitalGoldDashboardPulseDot}></span>
+              {/* <span className={styles.DigitalGoldDashboardPulseDot}></span> */}
+              <Podcast size={15} className={styles.liveBlinkIcon} />
               <span className={styles.DigitalGoldDashboardLiveText}>Live Price:</span>
             </div>
             <span className={styles.DigitalGoldDashboardPriceValue}>
@@ -252,9 +253,13 @@ const DigitalGold = () => {
               </div>
 
               <div className={styles.DigitalGoldDashboardSavingsBottom}>
-                <a href="#" className={styles.DigitalGoldDashboardViewDetail}>
-                  View Detail <ChevronRight size={14} />
-                </a>
+                <button
+                  type="button"
+                  className={styles.DigitalGoldDashboardViewDetail}
+                  onClick={() => navigate("/digitalGold/GoldHistory")}
+                >
+                  View Gold Price History <ChevronRight size={14} />
+                </button>
                 <div className={styles.DigitalGoldDashboardSavingsActions}>
                   <button className={styles.DigitalGoldDashboardBtnWithdraw} onClick={() => setSellGoldModal(true)}>Withdraw</button>
                   <button className={styles.DigitalGoldDashboardBtnBuy} onClick={() => setBuyGoldModal(true)}>Buy More</button>

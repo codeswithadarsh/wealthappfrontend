@@ -14,6 +14,7 @@ export const API_ROUTES = {
 
   GOLD_INVESTED_SUMMARY: "/api/gold/invested-summary",
   GOLD_ORDER_DETAILS: "/api/gold/orders",
+  GOLD_PRICE_HISTORY: "/api/gold/gold-history",
 
   BUY_GOLD_VALIDATE: "/api/gold/validate-buy",
   CREATE_GOLD_ORDER: "/api/payments/create-order",
