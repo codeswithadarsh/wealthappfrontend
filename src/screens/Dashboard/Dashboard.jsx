@@ -65,6 +65,7 @@ const Dashboard = () => {
     }, []);
 
     const totalInvested = dashboardData?.totalInvestedAmt || 0;
+    const walletBalance = dashboardData?.walletBalance || 0;
     const totalCurrentValue = dashboardData?.totalCurrentValue || 0;
     const totalGain = dashboardData?.totalGainInNum || 0;
     const profitLossPercent = dashboardData?.totalProfitLossPercent || 0;
@@ -121,15 +122,16 @@ const Dashboard = () => {
                                     <p className={styles.DashboardStatValue}>{loadingDashboard ? <LoadingDots /> : formatINR(totalInvested)}</p>
                                 </div>
                                 <div className={styles.DashboardStatItem}>
-                                    <span className={styles.DashboardLabel}>Total Gain</span>
-                                    <p
+                                    <span className={styles.DashboardLabel}>Wallet Balance</span>
+                                     <p className={styles.DashboardStatValue}>{loadingDashboard ? <LoadingDots /> : formatINR(walletBalance)}</p>
+                                    {/* <p
                                         className={`${styles.DashboardStatValue} ${totalGain < 0
                                                 ? styles.DashboardRedTexttotalGain
                                                 : styles.DashboardGreenTexttotalGain
                                             }`}
                                     >
                                         {loadingDashboard ? <LoadingDots /> : formatINR(totalGain)}
-                                    </p>
+                                    </p> */}
                                 </div>
                             </div>
                         </section>
