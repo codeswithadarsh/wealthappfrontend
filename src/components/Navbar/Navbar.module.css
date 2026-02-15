@@ -101,3 +101,32 @@
     display: none;
   }
 }
+
+
+/* --------------------------------------- */
+
+
+.NavbarProfileAvatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  
+  background-color: var(--color-fintech-green-light); 
+  color: var(--color-fintech-green);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: 1px solid var(--color-border-light);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.NavbarProfileAvatar:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}

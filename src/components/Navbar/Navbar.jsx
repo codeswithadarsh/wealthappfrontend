@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { logout } from "../../store/auth/auth.slice";
-import { selectIsAuthenticated } from "../../store/auth/auth.selectors";
+import { selectIsAuthenticated, selectUserName } from "../../store/auth/auth.selectors";
 import styles from "./Navbar.module.css";
 import wealthLogo from "../../assets/images/logos/logo.png"
 
@@ -11,6 +11,7 @@ const Navbar = ({ hideIcons, noRedirect }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const isAuthenticated = useSelector(selectIsAuthenticated);
+    const userName = useSelector(selectUserName)
 
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const dropdownRef = useRef(null);
@@ -34,6 +35,15 @@ const Navbar = ({ hideIcons, noRedirect }) => {
         return () =>
             document.removeEventListener("mousedown", handleClickOutside);
     }, []);
+
+    const getInitials = (name) => {
+        if (!name) return "👤";
+        const parts = name.trim().split(" ");
+        if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
+        return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
+    };
+
+    const initials = getInitials(userName);
 
     // if (!isAuthenticated) return null;
 
@@ -73,18 +83,25 @@ const Navbar = ({ hideIcons, noRedirect }) => {
                                 Digital Gold
                             </NavLink>
 
-            
+
                         </nav>
                     )}
                 </div>
 
                 {hideIcons ? null : (
                     <div className={styles.NavbarRight} ref={dropdownRef}>
-                        <div
+                        {/* <div
                             className={styles.NavbarProfileIcon}
                             onClick={() => setIsProfileOpen(prev => !prev)}
                         >
                             👤
+                        </div> */}
+
+                        <div
+                            className={styles.NavbarProfileAvatar}
+                            onClick={() => setIsProfileOpen(prev => !prev)}
+                        >
+                            {initials}
                         </div>
 
                         {isProfileOpen && (
