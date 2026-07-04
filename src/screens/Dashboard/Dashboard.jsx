@@ -98,7 +98,7 @@ const Dashboard = () => {
                     </div>
                 </header>
 
-                 <Debug />
+                 {/* <Debug /> */}Naya
 
                 <main className={styles.DashboardMainGrid}>
                     {/* Left Column: Portfolio, Promo, and Products */}
