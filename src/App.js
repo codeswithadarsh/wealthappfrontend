@@ -9,16 +9,24 @@ import Dashboard from "./screens/Dashboard/Dashboard";
 import { Toaster } from "react-hot-toast";
 import Profile from "./screens/UserProfile/Profile";
 import ProtectedLayout from "./routes/ProtectedLayout";
-import { setupPushNotifications, unsubscribePushNotifications } from "./services/pushNotification";
+import {
+  requestFcmToken,
+  sendTokenToBackend,
+  removeFcmToken,
+} from "./services/pushNotification";
 import DebuPage from "./screens/Dashboard/DebuPage"
 const App = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
     if (isAuthenticated) {
-      setupPushNotifications()
+      requestFcmToken().then((token) => {
+        if (token) {
+          sendTokenToBackend(token);
+        }
+      });
     } else {
-      unsubscribePushNotifications()
+      removeFcmToken();
     }
   }, [isAuthenticated]);
   return (

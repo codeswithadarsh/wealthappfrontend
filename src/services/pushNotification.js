@@ -1,91 +1,119 @@
+import { initializeApp } from "firebase/app";
+import {
+  getMessaging,
+  getToken,
+  onMessage,
+  deleteToken
+} from "firebase/messaging";
 import { postRequest } from "./apiClient";
 import { API_ROUTES } from "../constants/apiRoutes";
-import { addDebugLog } from "../screens/Dashboard/logger";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD9jVBd3prMoNfUNjEa05AS-1J8_eqN8Ow",
+  authDomain: "nidhify-cd207.firebaseapp.com",
+  projectId: "nidhify-cd207",
+  storageBucket: "nidhify-cd207.firebasestorage.app",
+  messagingSenderId: "995695015061",
+  appId: "1:995695015061:web:eff7724dfccfab08c6179c",
+  measurementId: "G-6EC21NZ25T"
+};
 
 const VAPID_PUBLIC_KEY =
   "BH-MRfAhJ61dwwaWRoMiI5GKVcJdFgw4CxVFX6h8esE_VVyoNFuvv1kBoR-GwZzSs3FopwkfTkuvMJ0xcbKSAmM";
 
-const urlBase64ToUint8Array = (base64String) => {
+initializeApp(firebaseConfig);
+
+let messaging = null;
+let currentFcmToken = null;
+
+export const urlBase64ToUint8Array = (base64String) => {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
   const base64 = (base64String + padding).replace(/-/g, "+").replace(/_/g, "/");
   const rawData = window.atob(base64);
   const outputArray = new Uint8Array(rawData.length);
-
   for (let i = 0; i < rawData.length; i++) {
     outputArray[i] = rawData.charCodeAt(i);
   }
-
   return outputArray;
 };
 
-export const setupPushNotifications = async () => {
+export const requestFcmToken = async () => {
   try {
     if (!("serviceWorker" in navigator) || !("PushManager" in window)) {
-      console.log("Push notifications not supported");
-      return false;
+      return null;
     }
-    addDebugLog("Starting push setup");
+
     const permission = await Notification.requestPermission();
-    addDebugLog("Permission", permission);
     if (permission !== "granted") {
-      console.log("Notification permission denied");
-      return false;
+      return null;
     }
 
-    const registration =
-      await navigator.serviceWorker.register("/service-worker.js");
+    messaging = getMessaging();
 
-    addDebugLog("SW registered");
+    const registration = await navigator.serviceWorker.register(
+      "/firebase-messaging-sw.js"
+    );
 
-    const existing = await registration.pushManager.getSubscription();
-
-    addDebugLog("Existing subscription", existing ? existing.endpoint : null);
-
-    const subscription = await registration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
+    const token = await getToken(messaging, {
+      vapidKey: VAPID_PUBLIC_KEY,
+      serviceWorkerRegistration: registration
     });
 
-    addDebugLog("Subscription object", subscription.toJSON());
-
-    const response = await postRequest(API_ROUTES.NOTIFICATION_SUBSCRIBE, {
-      subscription: subscription.toJSON(),
-      deviceInfo: navigator.userAgent,
-    });
-
-    addDebugLog("Subscribe API response", response);
-
-    if (response?.status === 1) {
-      return true;
+    if (!token) {
+      return null;
     }
 
-    return false;
-  } catch (error) {
-    console.error("Push notification setup failed:", error);
-    addDebugLog("ERROR", {
-      name: error.name,
-      message: error.message,
-      stack: error.stack,
+    currentFcmToken = token;
+
+    onMessage(messaging, (payload) => {
+      const { title, body } = payload.data || {};
+      if (title || body) {
+        const notification = new Notification(title || "WealthApp", {
+          body: body || "",
+          icon: "/logo192.png"
+        });
+        if (payload.data?.url) {
+          notification.onclick = () => {
+            window.open(payload.data.url, "_self");
+          };
+        }
+      }
     });
-    return false;
+
+    return token;
+  } catch {
+    return null;
   }
 };
 
-export const unsubscribePushNotifications = async () => {
+export const sendTokenToBackend = async (fcmToken) => {
+  const response = await postRequest(API_ROUTES.NOTIFICATION_SUBSCRIBE, {
+    fcmToken,
+    deviceInfo: navigator.userAgent
+  });
+  return response;
+};
+
+export const removeFcmToken = async () => {
+  if (!currentFcmToken) {
+    return;
+  }
+
   try {
-    if (!("serviceWorker" in navigator)) {
-      return;
-    }
-
-    const registration = await navigator.serviceWorker.ready;
-    const subscription = await registration.pushManager.getSubscription();
-
-    if (subscription) {
-      const endpoint = subscription.endpoint;
-      await subscription.unsubscribe();
-      await postRequest(API_ROUTES.NOTIFICATION_UNSUBSCRIBE, { endpoint });
-    }
-  } catch (error) {
-    console.error("Push notification unsubscribe failed:", error);
+    await postRequest(API_ROUTES.NOTIFICATION_UNSUBSCRIBE, {
+      fcmToken: currentFcmToken
+    });
+  } catch {
   }
+
+  try {
+    if (messaging && currentFcmToken) {
+      await deleteToken(messaging);
+    }
+  } catch {
+  }
+
+  currentFcmToken = null;
 };
+
+export const getCurrentFcmToken = () => currentFcmToken;
