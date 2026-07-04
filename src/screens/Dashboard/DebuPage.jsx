@@ -5,9 +5,7 @@ const VAPID_PUBLIC_KEY =
 
 const urlBase64ToUint8Array = (base64String) => {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
-  const base64 = (base64String + padding)
-    .replace(/-/g, "+")
-    .replace(/_/g, "/");
+  const base64 = (base64String + padding).replace(/-/g, "+").replace(/_/g, "/");
 
   const rawData = window.atob(base64);
   const outputArray = new Uint8Array(rawData.length);
@@ -45,8 +43,7 @@ export default function PushDebugPage() {
       if (swSupported) {
         const registration = await navigator.serviceWorker.ready;
 
-        subscription =
-          await registration.pushManager.getSubscription();
+        subscription = await registration.pushManager.getSubscription();
 
         if (subscription) {
           endpoint = subscription.endpoint;
@@ -69,9 +66,7 @@ export default function PushDebugPage() {
         endpoint,
       });
 
-      addLog(
-        `Subscription exists: ${!!subscription}`
-      );
+      addLog(`Subscription exists: ${!!subscription}`);
     } catch (e) {
       addLog(`Load Error: ${e.name} - ${e.message}`);
     }
@@ -81,8 +76,7 @@ export default function PushDebugPage() {
     try {
       addLog("Starting subscription...");
 
-      const permission =
-        await Notification.requestPermission();
+      const permission = await Notification.requestPermission();
 
       addLog(`Permission: ${permission}`);
 
@@ -90,27 +84,21 @@ export default function PushDebugPage() {
         return;
       }
 
-      const registration =
-        await navigator.serviceWorker.ready;
+      const registration = await navigator.serviceWorker.ready;
 
       addLog("Service Worker Ready");
 
-      let subscription =
-        await registration.pushManager.getSubscription();
+      let subscription = await registration.pushManager.getSubscription();
 
-      addLog(
-        `Existing subscription: ${!!subscription}`
-      );
+      addLog(`Existing subscription: ${!!subscription}`);
 
       if (!subscription) {
         addLog("Creating subscription...");
 
-        subscription =
-          await registration.pushManager.subscribe({
-            userVisibleOnly: true,
-            applicationServerKey:
-              urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
-          });
+        subscription = await registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
+        });
 
         addLog("Subscription created successfully");
         addLog(subscription.endpoint);
@@ -131,18 +119,15 @@ export default function PushDebugPage() {
     loadInfo();
   }, []);
 
+  const logss = JSON.parse(localStorage.getItem("pushLogs") || "[]");
+
   return (
     <div style={{ padding: 20 }}>
       <h2>Push Debug Page</h2>
 
-      <button onClick={loadInfo}>
-        Refresh Info
-      </button>
+      <button onClick={loadInfo}>Refresh Info</button>
 
-      <button
-        onClick={testSubscribe}
-        style={{ marginLeft: 10 }}
-      >
+      <button onClick={testSubscribe} style={{ marginLeft: 10 }}>
         Test Subscribe
       </button>
 
@@ -166,6 +151,22 @@ export default function PushDebugPage() {
       >
         {logs.map((log, index) => (
           <div key={index}>{log}</div>
+        ))}
+      </div>
+
+      <div>
+        {logs.map((log, index) => (
+          <div
+            key={index}
+            style={{
+              borderBottom: "1px solid #ddd",
+              padding: 8,
+            }}
+          >
+            <div>{log.time}</div>
+            <div>{log.message}</div>
+            <pre>{JSON.stringify(log.data, null, 2)}</pre>
+          </div>
         ))}
       </div>
     </div>
