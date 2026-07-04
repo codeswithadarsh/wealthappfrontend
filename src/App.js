@@ -38,7 +38,7 @@ const App = () => {
 
         <Route element={<PublicRoute />}>
           <Route path="/login" element={<UserLogin />} />
-
+        <Route path="*" element={<UserLogin />} />
         </Route>
 
         <Route element={<ProtectedRoute />}>
@@ -49,7 +49,7 @@ const App = () => {
           </Route>
         </Route>
 
-        <Route path="*" element={<UserLogin />} />
+
 
       </Routes>
 
