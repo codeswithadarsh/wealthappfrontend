@@ -23,6 +23,7 @@ import { fetchDashboardAllAssets } from '../../services/apis/dashboard.service';
 import { formatINR } from "../../utils/currency";
 import CountUp from 'react-countup';
 import LoadingDots from '../../components/LoadingDots/LoadingDots';
+import Debug from "./Debug"
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -97,7 +98,7 @@ const Dashboard = () => {
                     </div>
                 </header>
 
-                  <p>COnsole: {navigator.userAgent}</p>
+                 <Debug />
 
                 <main className={styles.DashboardMainGrid}>
                     {/* Left Column: Portfolio, Promo, and Products */}
