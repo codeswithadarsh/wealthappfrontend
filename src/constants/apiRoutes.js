@@ -26,5 +26,8 @@ export const API_ROUTES = {
   FETCH_SELL_LIVE_PRICE: "/api/gold/sell-price",
   FETCH_GOLD_LIVE_PRICE: "/api/gold/live-price",
 
-  GET_DASHBOARD_ALL_ASSETS_DETAILS: "/api/users/assets-details"
+  GET_DASHBOARD_ALL_ASSETS_DETAILS: "/api/users/assets-details",
+
+  NOTIFICATION_SUBSCRIBE: "/api/notifications/subscribe",
+  NOTIFICATION_UNSUBSCRIBE: "/api/notifications/unsubscribe",
 }

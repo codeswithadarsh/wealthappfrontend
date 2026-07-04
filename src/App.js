@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
@@ -7,8 +9,18 @@ import Dashboard from "./screens/Dashboard/Dashboard";
 import { Toaster } from "react-hot-toast";
 import Profile from "./screens/UserProfile/Profile";
 import ProtectedLayout from "./routes/ProtectedLayout";
+import { setupPushNotifications, unsubscribePushNotifications } from "./services/pushNotification";
 
 const App = () => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      setupPushNotifications()
+    } else {
+      unsubscribePushNotifications()
+    }
+  }, [isAuthenticated]);
   return (
     <BrowserRouter>
       <Toaster
