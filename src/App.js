@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 import Profile from "./screens/UserProfile/Profile";
 import ProtectedLayout from "./routes/ProtectedLayout";
 import { setupPushNotifications, unsubscribePushNotifications } from "./services/pushNotification";
-
+import DebuPage from "./screens/Dashboard/DebuPage"
 const App = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
@@ -45,7 +45,7 @@ const App = () => {
           <Route element={<ProtectedLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/digitalGold/*" element={<DigitalGold />} />
-            <Route path="/Profile" element={<Profile />} />
+            <Route path="/Profile" element={<DebuPage />} />
           </Route>
         </Route>
 
