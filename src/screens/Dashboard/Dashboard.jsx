@@ -97,6 +97,8 @@ const Dashboard = () => {
                     </div>
                 </header>
 
+                  <p>COnsole: {navigator.userAgent}</p>
+
                 <main className={styles.DashboardMainGrid}>
                     {/* Left Column: Portfolio, Promo, and Products */}
                     <div className={styles.DashboardLeftCol}>
